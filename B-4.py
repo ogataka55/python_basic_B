@@ -15,13 +15,17 @@ def main():
 
     # Q1. 全国の平均気温を計算してください(9.5となればOK)
     from statistics import mean
-    for temp in weather_information:
-        a = [temp['temperature']]
-        print(a)
+    all_temp = [temp['temperature'] for temp in weather_information]  # リスト内包表記
+    print(mean(all_temp))  # 標準ライブラリstatisticsのmean関数
 
     # Q2. 大阪府のすべての駅名をカンマ区切りで出力してください( '梅田,大阪,堺' となればOK)
+    osaka_sta = [sta['station'] for sta in weather_information if sta['prefecture'] == '大阪府']  # リスト内包表記+条件指定
+    print(*osaka_sta, sep=',')  # sepオプションは区切り文字を設定
 
     # Q3. 福岡県の平均気温を計算してください(14.0となればOK)
+    from statistics import mean
+    fukuoka_temp = [temp['temperature'] for temp in weather_information if temp['prefecture'] == '福岡県']
+    print(mean(fukuoka_temp))
 
 
 if __name__ == '__main__':
